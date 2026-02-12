@@ -1,5 +1,4 @@
 const express = require("express");
-const cors = require("cors");
 const { Pool } = require("pg");
 const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
@@ -15,31 +14,21 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://prp-ayurved-frontend-feojxlpar-suyog657898775456s-projects.vercel.app"
+  "https://prp-ayurved-frontend-feojxlpar-suyog657898775456s-projects.vercel.app",
 ];
 
+// ===== GLOBAL CORS FIX FOR VERCEL =====
 app.use((req, res, next) => {
-  const origin = req.headers.origin;
-
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  }
-
-  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
-  // VERY IMPORTANT (handles preflight)
   if (req.method === "OPTIONS") {
     return res.status(200).end();
   }
 
   next();
 });
-
 
 app.use(express.json());
 
@@ -70,7 +59,6 @@ const admissionStorage = new CloudinaryStorage({
     const cleanName = file.originalname
       .replace(/\s+/g, "_")
       .replace(/[^a-zA-Z0-9._-]/g, "");
-      
 
     return {
       folder: "college_admissions",
@@ -271,8 +259,6 @@ pool
   .catch((err) => {
     console.error("❌ Database Connection Error:", err.message);
   });
-
-
 
 // ------------------------------------------
 // 3. ROUTES
