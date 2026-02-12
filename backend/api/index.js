@@ -269,7 +269,7 @@ pool
 
 
 // --- ADMIN LOGIN ---
-app.post("/api/login", (req, res) => {
+app.post("/login", (req, res) => {
   const { username, password } = req.body;
 
   if (
