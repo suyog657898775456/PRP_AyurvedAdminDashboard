@@ -243,7 +243,8 @@ pool
     console.error("❌ Database Connection Error:", err.message);
   });
 
-module.exports = pool;
+
+
 // ------------------------------------------
 // 3. ROUTES
 // ------------------------------------------
@@ -2004,7 +2005,4 @@ app.post(
   },
 );
 
-// Start Server
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+module.exports = app;
