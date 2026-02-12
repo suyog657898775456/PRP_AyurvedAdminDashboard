@@ -1,9 +1,8 @@
+
 {
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/server.js",
-      "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+  "functions": {
+    "api/index.js": {
+      "runtime": "nodejs18.x"
     }
-  ]
+  }
 }

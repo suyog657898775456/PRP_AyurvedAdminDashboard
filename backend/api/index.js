@@ -2020,4 +2020,5 @@ app.post(
   },
 );
 
-module.exports = serverless(app);
+module.exports = app;                 // for local use
+module.exports.handler = serverless(app);  // for Vercel
