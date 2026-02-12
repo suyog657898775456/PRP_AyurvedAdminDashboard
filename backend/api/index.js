@@ -264,6 +264,24 @@ pool
 // 3. ROUTES
 // ------------------------------------------
 
+// ---- FORCE PREFLIGHT HANDLING (VERCEL FIX) ----
+app.options(/.*/, (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.status(200).end();
+});
+
+
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
+
+
+
 // --- ADMIN LOGIN ---
 app.post("/api/login", (req, res) => {
   const { username, password } = req.body;
