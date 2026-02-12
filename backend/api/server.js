@@ -5,6 +5,8 @@ const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const jwt = require("jsonwebtoken");
+const serverless = require("serverless-http");
+
 require("dotenv").config();
 
 const app = express();
@@ -2032,4 +2034,4 @@ app.post(
   },
 );
 
-module.exports = app;
+module.exports = serverless(app);
