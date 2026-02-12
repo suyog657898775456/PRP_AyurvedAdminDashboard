@@ -41,6 +41,7 @@ const admissionStorage = new CloudinaryStorage({
     const cleanName = file.originalname
       .replace(/\s+/g, "_")
       .replace(/[^a-zA-Z0-9._-]/g, "");
+      
 
     return {
       folder: "college_admissions",
